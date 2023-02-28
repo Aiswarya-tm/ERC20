@@ -23,16 +23,13 @@ export default function MainPage(){
     const handleConnect = async()=>{
 
         const wallets = await onboard.connectWallet()
-        console.log("web3 in connect ",wallets[0].provider, wallets[0].accounts[0].address)
         setAccount(wallets[0].accounts[0].address)
         setIsConnect(true)
         const web3New = new Web3(wallets[0].provider)
-        console.log("web3 after set ",web3New)
         setWeb3(web3New)
 
         const [labEx] = onboard.state.get().chains
         setChainId(labEx.id)
-        console.log("lab fr ",labEx.id)
 
     }
 

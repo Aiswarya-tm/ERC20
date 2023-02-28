@@ -46,10 +46,8 @@ export default function BalanceAndTransfer({ web3, account,chainId }) {
       tokenaddressTocheckbalance,
       web3
     );
-    console.log("in f in send")
     tokenInstance.methods.transfer(toAddress,tokenAmount).send({from:account}).then((txnHash)=>{
         sethash(txnHash.transactionHash)
-        console.log("in f hash is",txnHash.transactionHash);
     })
   };
 
