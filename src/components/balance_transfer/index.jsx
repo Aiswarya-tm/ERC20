@@ -11,6 +11,7 @@ export default function BalanceAndTransfer({ web3, account }) {
   const [toAddress, setToAddress] = useState("");
   const [tokenAmount, setTokenAmount] = useState("");
   const [symbol, setSymbol] = useState("");
+  const [hash,sethash] = useState("")
 
   const handleBalanceAddress = (e) => {
     setTokenAddressToCheckBalance(e.target.value.trim());
@@ -46,6 +47,7 @@ export default function BalanceAndTransfer({ web3, account }) {
     );
     console.log("in f in send")
     tokenInstance.methods.transfer(toAddress,tokenAmount).send({from:account}).then((txnHash)=>{
+        // sethash(txnHash.transactionHash)
         console.log("in f hash is",txnHash.transactionHash);
     })
   };
@@ -71,6 +73,13 @@ export default function BalanceAndTransfer({ web3, account }) {
             placeholder="Token Address"
             handleFunction={handleBalanceAddress}
           />
+          {balance.length > 0 ? (
+            <p className="bal-text name-above-text">
+              Balance is {balance} {symbol}
+            </p>
+          ) : (
+            ""
+          )}
           <button
             className="custom-button"
             onClick={fetchBalance}
@@ -78,13 +87,6 @@ export default function BalanceAndTransfer({ web3, account }) {
           >
             Check
           </button>
-          {balance.length > 0 ? (
-            <>
-              Balance is {balance} {symbol}
-            </>
-          ) : (
-            ""
-          )}
         </div>
       </div>
 
@@ -127,6 +129,7 @@ export default function BalanceAndTransfer({ web3, account }) {
           >
             Transfer
           </button>
+          {hash.length>0 ?<a target="_blank" rel="noopener" href={`https://goerli.etherscan.io/tx/${hash}`}>View transaction</a>:""}
         </div>
         <div className="bal-pag-content">
           <p>

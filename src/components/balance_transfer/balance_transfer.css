@@ -26,10 +26,31 @@
 }
 
 .name-above-text{
-    float: left;
     margin:5px 0px 5px 0px;
 }
 
-.disabled{
-    background:black;
+
+
+.bal-text{
+    color: #427f9e;
+    text-align: left;
+    font-weight: bold;
 }
+
+@media (max-width: 1000px){
+    .custom-button{
+     width:380px;
+    }
+ }
+ 
+ @media (max-width: 840px){
+    .custom-button{
+    width:340px;
+   }
+ }
+ 
+ @media (max-width: 750px){
+    .custom-button{
+    width:320px;
+   }
+ }

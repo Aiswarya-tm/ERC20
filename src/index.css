@@ -51,3 +51,21 @@ div{
     text-align: justify;
     text-justify: inter-word;
 }
+
+@media (max-width: 1000px){
+   input{
+    width:360px;
+   }
+}
+
+@media (max-width: 840px){
+  input{
+   width:320px;
+  }
+}
+
+@media (max-width: 750px){
+  input{
+   width:300px;
+  }
+}
