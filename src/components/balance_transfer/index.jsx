@@ -9,11 +9,11 @@ export default function BalanceAndTransfer({ web3, account }) {
   const [balance, setBalance] = useState("");
   const [tokenAddressToTransfer, setTokenAddressToTransfer] = useState("");
   const [toAddress, setToAddress] = useState("");
-  const [tokenAmount,setTokenAmount] = useState("")
+  const [tokenAmount, setTokenAmount] = useState("");
   const [symbol, setSymbol] = useState("");
 
   const handleBalanceAddress = (e) => {
-    setTokenAddressToCheckBalance(e.target.value);
+    setTokenAddressToCheckBalance(e.target.value.trim());
   };
   const handleToransferTokenAddressChange = (e) => {
     setTokenAddressToTransfer(e.target.value);
@@ -30,24 +30,25 @@ export default function BalanceAndTransfer({ web3, account }) {
       tokenaddressTocheckbalance,
       web3
     );
-    console.log("in f ", tokenInstance.methods);
-    console.log("in f d ", await tokenInstance.methods.decimals().call());
     tokenInstance.methods
       .balanceOf(account)
       .call()
       .then((res) => {
-        console.log("in f re ", res);
-        setBalance(res, () => {
-          tokenInstance.methods
-            .symbol()
-            .call()
-            .then((result) => {
-              setSymbol(result, res);
-            });
-        });
+        setBalance(res);
       });
+    let symbol_var = await tokenInstance.methods.symbol().call();
+    setSymbol(symbol_var);
   };
-  const handleTransfer = () => {};
+  const handleTransfer = async () => {
+    const tokenInstance = await getTokenInstance(
+      tokenaddressTocheckbalance,
+      web3
+    );
+    console.log("in f in send")
+    tokenInstance.methods.transfer(toAddress,tokenAmount).send({from:account}).then((txnHash)=>{
+        console.log("in f hash is",txnHash.transactionHash);
+    })
+  };
 
   return (
     <React.Fragment>
@@ -117,7 +118,9 @@ export default function BalanceAndTransfer({ web3, account }) {
             onClick={handleTransfer}
             className="custom-button"
             disabled={
-              (toAddress.length > 0 && tokenAddressToTransfer.length > 0) && tokenAmount.length>0
+              toAddress.length > 0 &&
+              tokenAddressToTransfer.length > 0 &&
+              tokenAmount.length > 0
                 ? false
                 : true
             }
