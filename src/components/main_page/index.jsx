@@ -9,17 +9,16 @@ export default function MainPage(){
     const [isConnect,setIsConnect] = React.useState(false);
     const [account,setAccount] = React.useState();
     const [web3,setWeb3] = React.useState();
-    const [label,setLabel] = React.useState();
+    const [chainId,setChainId] = React.useState("");
 
     const handleDisconnect = async()=>{
         const [primaryWallet] = onboard.state.get().wallets
         await onboard.disconnectWallet({ label: primaryWallet.label })
         setIsConnect(false);
+        setChainId("")
     }
 
-    useEffect(()=>{
-        console.log("lab is",label)
-    },[label])
+
 
     const handleConnect = async()=>{
 
@@ -31,6 +30,10 @@ export default function MainPage(){
         console.log("web3 after set ",web3New)
         setWeb3(web3New)
 
+        const [labEx] = onboard.state.get().chains
+        setChainId(labEx.id)
+        console.log("lab fr ",labEx.id)
+
     }
 
     return(
@@ -41,7 +44,7 @@ export default function MainPage(){
             <Connect handleConnect={handleConnect} message="Connect "/>
             }
             
-            {isConnect ?<BalanceAndTransfer web3={web3} account={account}/>:""}
+            {isConnect ?<BalanceAndTransfer web3={web3} account={account} chainId={chainId}/>:""}
 
         </div>
 

@@ -3,7 +3,7 @@ import Input from "../input";
 import { getTokenInstance } from "../utils";
 import "./balance_transfer.css";
 
-export default function BalanceAndTransfer({ web3, account }) {
+export default function BalanceAndTransfer({ web3, account,chainId }) {
   const [tokenaddressTocheckbalance, setTokenAddressToCheckBalance] =
     useState("");
   const [balance, setBalance] = useState("");
@@ -41,13 +41,14 @@ export default function BalanceAndTransfer({ web3, account }) {
     setSymbol(symbol_var);
   };
   const handleTransfer = async () => {
+    sethash("")
     const tokenInstance = await getTokenInstance(
       tokenaddressTocheckbalance,
       web3
     );
     console.log("in f in send")
     tokenInstance.methods.transfer(toAddress,tokenAmount).send({from:account}).then((txnHash)=>{
-        // sethash(txnHash.transactionHash)
+        sethash(txnHash.transactionHash)
         console.log("in f hash is",txnHash.transactionHash);
     })
   };
@@ -129,7 +130,8 @@ export default function BalanceAndTransfer({ web3, account }) {
           >
             Transfer
           </button>
-          {hash.length>0 ?<a target="_blank" rel="noopener" href={`https://goerli.etherscan.io/tx/${hash}`}>View transaction</a>:""}
+          {hash.length>0 ? chainId=='0x1'? 
+          <a target="_blank" rel="noopener" href={`https://etherscan.io/tx/${hash}`}>View transaction</a> :<a target="_blank" rel="noopener" href={`https://goerli.etherscan.io/tx/${hash}`}>View transaction</a>:""}
         </div>
         <div className="bal-pag-content">
           <p>
