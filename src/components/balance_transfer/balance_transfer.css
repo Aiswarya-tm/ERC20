@@ -14,7 +14,7 @@
     flex-direction: column;
     width:50%;
     margin:15px;
-    background-color: #ffe3b3;
+    background-color: #221156;
     border-radius: 20px;
     padding: 30px 20px;
     align-items: center;
@@ -32,7 +32,7 @@
 
 
 .bal-text{
-    color: #427f9e;
+    color: #5B8FB9;
     text-align: left;
     font-weight: bold;
 }

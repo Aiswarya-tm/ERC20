@@ -8,6 +8,7 @@ const injected = injectedModule()
 const INFURA_ID="b50045c73b264384ba7deaa44ce591cf"
 
 export const onboard = Onboard({
+  theme: 'dark',
   wallets: [injected,walletConnect],
   chains: [
     {

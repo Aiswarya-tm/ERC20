@@ -6,11 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: #f8d49b;
+  background-color: #03001C;
 }
 
 h2 {
-  color:#427f9e;
+  color:#5B8FB9;
   margin: 10px;
 }
 
@@ -29,18 +29,29 @@ button{
 button:disabled,
 button[disabled]{
   /* border: 1px solid #999999; */
-  background-color:#427f9e;
+  background-color:#B6EADA;
   color: white;
   cursor:no-drop;
 }
 
 
 input{
-  border: 1px solid #f8e6cb;
+  border: 1px solid #301E67;
   border-radius: 5px;
   padding: 10px;
   width:400px;
   outline: #62c4c3;
+}
+input, select, textarea{
+  color: #03001C;
+}
+
+a{
+  color: #5B8FB9;
+  margin-top: 5px;
+}
+input::placeholder{
+  color:#6B728E;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -50,6 +61,10 @@ code {
 div{
     text-align: justify;
     text-justify: inter-word;
+}
+
+p{
+  color: white;
 }
 
 @media (max-width: 1000px){
