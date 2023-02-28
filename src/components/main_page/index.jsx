@@ -3,7 +3,7 @@ import Connect from "../connect";
 import Web3 from 'web3';
 import BalanceAndTransfer from '../balance_transfer';
 import "./main_page.css";
-
+import {onboard} from "../../config/blocknative.js"
 export default function MainPage(){
 
     const [isConnect,setIsConnect] = React.useState(false);
@@ -45,9 +45,16 @@ export default function MainPage(){
 
     }
 
+    const handleClick = async()=>{
+        console.log("wallets connect in ")
+        const wallets = await onboard.connectWallet()
+        console.log("wallets connect ",wallets)
+    }
+
     return(
         <>  
         <div className="main-container">
+            <button onClick={handleClick}>Click</button>
             {isConnect ? 
             <Connect handleConnect={handleDisconnect} message={`Disconnect  ( ${((account.substring(0,4)).concat("...")).concat(account.substring(account.length-4,account.length))}  )`}/> : 
             <Connect handleConnect={handleConnect} message="Connect "/>
