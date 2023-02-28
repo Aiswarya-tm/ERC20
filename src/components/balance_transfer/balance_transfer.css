@@ -1,0 +1,35 @@
+.bal-pag-con {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.bal-pag-content{
+    width:30%;
+    margin:10px;
+}
+
+.check-bal-inp-con{
+    display: flex;
+    flex-direction: column;
+    width:50%;
+    margin:15px;
+    background-color: #ffe3b3;
+    border-radius: 20px;
+    padding: 30px 20px;
+    align-items: center;
+}
+
+.custom-button{
+    width:420px;
+    margin-top: 10px;
+}
+
+.name-above-text{
+    float: left;
+    margin:5px 0px 5px 0px;
+}
+
+.disabled{
+    background:black;
+}
